@@ -19,3 +19,5 @@ Invoke-WebRequest -Uri $uri -OutFile $fileName
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 [System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, $physicalPath)
+
+# TODO: Switces for Recycle Application Pool and maybe Restart WebSite
