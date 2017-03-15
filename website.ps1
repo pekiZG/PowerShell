@@ -18,4 +18,4 @@ Invoke-WebRequest -Uri $uri -OutFile $fileName
 #Expand-Archive -Path $fileName -DestinationPath $physicalPath -Force
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::ExtractToDirecotry((Get-Location).Path + "\" + $fileName, $physicalPath)
+[System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, $physicalPath)
