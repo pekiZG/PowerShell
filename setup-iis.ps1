@@ -7,3 +7,6 @@ Start-Process "WebPlatformInstaller_amd64_en-US.msi" /qn -Wait
 
 # NETFramework452
 Start-Process "C:\Program Files\Microsoft\Web Platform Installer\WebpiCmd-x64.exe" -ArgumentList "/Install /Products:NETFramework452 /AcceptEULA /ForceReboot" -WindowStyle Hidden -Wait
+
+# TODO: Install Windows Management Framework (dependant on NETFramework452)
+# https://msdn.microsoft.com/en-us/powershell/wmf/5.1/install-configure

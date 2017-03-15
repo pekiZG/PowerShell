@@ -1,4 +1,4 @@
-param([string]$artifactUri)
+param([string]$uri)
 $siteName = "WebSite"
 $physicalPath = "C:\inetpub\www\" + $siteName.ToLower()
 
@@ -10,12 +10,12 @@ New-Item $physicalPath -Type directory
 New-Website -Name $siteName -ApplicationPool $siteName -PhysicalPath $physicalPath
 Start-Website -Name $siteName
 
-$artifactFileName = Split-Path $artifactUri -leaf
-Invoke-WebRequest -Uri $artifactUri -OutFile $artifactFileName
+$fileName = Split-Path $uri -leaf
+Invoke-WebRequest -Uri $uri -OutFile $fileName
 
-# Update to to use this
+# Update 'setup-iis' to to use this
 # https://msdn.microsoft.com/en-us/powershell/wmf/5.1/install-configure
-#Expand-Archive -Path $artifactFileName -DestinationPath $physicalPath -Force
+#Expand-Archive -Path $fileName -DestinationPath $physicalPath -Force
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-[System.IO.Compression.ZipFile]::ExtractToDirecotry((Get-Location).Path + "\" + $artifactFileName, $physicalPath)
+[System.IO.Compression.ZipFile]::ExtractToDirecotry((Get-Location).Path + "\" + $fileName, $physicalPath)
