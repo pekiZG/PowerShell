@@ -26,6 +26,7 @@ try {
 
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, $physicalPath)
+    Remove-Item $fileName
 }
 catch {
     Write-Host "Oops..."
@@ -33,5 +34,4 @@ catch {
 }
 finally {
     Restart-WebAppPool -Name $siteName
-    Remove-Item (Get-Location).Path + "\" + $fileName
 }
