@@ -9,7 +9,7 @@ if (!(Test-Path IIS:\AppPools\$siteName)) {
 }
 
 if (!(Test-Path $physicalPath)) {
-    New-Item $physicalPath -Type directory
+    New-Item $physicalPath -Type Directory
 }
 
 if (!(Test-Path IIS:\Sites\$siteName)) {
@@ -24,9 +24,14 @@ try {
     # https://msdn.microsoft.com/en-us/powershell/wmf/5.1/install-configure
     #Expand-Archive -Path $fileName -DestinationPath $physicalPath -Force
 
+    $random = Get-Random
     Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, $physicalPath)
+    [System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, (Get-Location).Path + "\" + $random)
+
+    Copy-Item $random -Destination $physicalPath -Recurse -Force
+
     Remove-Item $fileName
+    Remove-Item $random -Recurse -Force
 }
 catch {
     Write-Host "Oops..."
