@@ -28,7 +28,7 @@ try {
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     [System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, (Get-Location).Path + "\" + $random)
 
-    Copy-Item $random -Destination $physicalPath -Recurse -Force
+    Copy-Item $random\* -Destination $physicalPath -Recurse -Force
 
     Remove-Item $fileName
     Remove-Item $random -Recurse -Force
