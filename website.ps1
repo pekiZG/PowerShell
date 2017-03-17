@@ -24,14 +24,14 @@ try {
     # https://msdn.microsoft.com/en-us/powershell/wmf/5.1/install-configure
     #Expand-Archive -Path $fileName -DestinationPath $physicalPath -Force
 
-    $random = Get-Random
+    $tempDirectory = Get-Random
     Add-Type -AssemblyName System.IO.Compression.FileSystem
-    [System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, (Get-Location).Path + "\" + $random)
+    [System.IO.Compression.ZipFile]::ExtractToDirectory((Get-Location).Path + "\" + $fileName, (Get-Location).Path + "\" + $tempDirectory)
 
-    Copy-Item $random\* -Destination $physicalPath -Recurse -Force
+    Copy-Item $tempDirectory\* -Destination $physicalPath -Recurse -Force
+    Remove-Item $tempDirectory -Recurse -Force
 
     Remove-Item $fileName
-    Remove-Item $random -Recurse -Force
 }
 catch {
     Write-Host "Oops..."
