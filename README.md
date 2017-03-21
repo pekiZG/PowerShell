@@ -1,2 +1,6 @@
 # PowerShell
-My random scripts
+
+Scripts for automation:
+
+- Setup development IIS
+- Deploy packaged build
