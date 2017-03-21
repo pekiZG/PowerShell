@@ -1,5 +1,15 @@
-param([string]$uri)
-$siteName = "WebSite"
+Param(
+    # URI to the .zip archive
+    [Parameter(Mandatory=$True)]
+    [ValidateNotNullOrEmpty()]
+    [string] $uri,
+
+    # Website name being used for deployment
+    [Parameter(Mandatory=$True)]
+    [ValidateNotNullOrEmpty()]
+    [string] $siteName
+)
+
 $physicalPath = "C:\inetpub\www\" + $siteName.ToLower()
 
 Import-Module WebAdministration
@@ -34,7 +44,7 @@ try {
     Remove-Item $fileName
 }
 catch {
-    Write-Host "Oops..."
+    Write-Host "Oops, something went wrong..."
     exit
 }
 finally {
