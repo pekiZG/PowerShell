@@ -3,7 +3,7 @@
 Start-Process "WebPlatformInstaller_amd64_en-US.msi" -ArgumentList "/qn" -Wait 
  
 # Git for Windows  
-Start-Process "C:\Program Files\Microsoft\Web Platform Installer\WebpiCmd-x64.exe" -ArgumentList "/Install /Products:msysgitVS /AcceptEULA" -WindowStyle Hidden -Wait
+Start-Process "C:\Program Files\Microsoft\Web Platform Installer\WebpiCmd-x64.exe" -ArgumentList "/Install /Products:NETFramework452,msysgitVS /AcceptEULA" -WindowStyle Hidden -Wait
  
 # NuGet
 New-Item "C:\NuGet\" -Type Directory
