@@ -18,7 +18,7 @@ Start-Process "C:\Program Files\Microsoft\Web Platform Installer\WebpiCmd-x64.ex
 Write-Host "Git for Windows Installed"
 
 # NuGet
-if (!(Test-Path $physicalPath)) {
+if (!(Test-Path "C:\NuGet\")) {
     New-Item "C:\NuGet\" -Type Directory
 }
 (New-Object System.Net.WebClient).DownloadFile("https://dist.nuget.org/win-x86-commandline/v4.0.0/nuget.exe", "C:\NuGet\nuget.exe")
