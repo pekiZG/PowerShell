@@ -2,6 +2,9 @@ Import-Module ServerManager
 Add-WindowsFeature Web-Server -includeallsubfeature
 Remove-Website -Name "Default Web Site"
 
+Import-Module WebAdministration
+Clear-WebConfiguration "/system.webServer/httpProtocol/customHeaders/add[@name='X-Powered-By']"
+
 Invoke-WebRequest -Uri http://download.microsoft.com/download/C/F/F/CFF3A0B8-99D4-41A2-AE1A-496C08BEB904/WebPlatformInstaller_amd64_en-US.msi -OutFile "WebPlatformInstaller_amd64_en-US.msi"
 Start-Process "WebPlatformInstaller_amd64_en-US.msi" -ArgumentList "/qn" -Wait
 
